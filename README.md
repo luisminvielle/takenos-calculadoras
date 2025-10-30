@@ -6,7 +6,7 @@ Este es un frontend simple para un conversor de divisas, creado para Takenos. Pe
 
 - Conversión de EUR a ARS y viceversa.
 - Tasa de cambio preestablecida (1 EUR = 1665 ARS).
-- Interfaz de usuario inspirada en Wise, adaptada con la marca Takenos y una paleta de colores púrpura.
+- Interfaz de usuario que sigue la marca Takenos con una paleta de colores púrpura.
 - Diseño responsivo básico.
 
 ## Cómo usar
