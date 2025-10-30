@@ -71,32 +71,32 @@
             background-color: #7c3aed; /* Medium purple from logo */
             color: white;
             text-align: center;
-            padding: 80px 20px 120px 20px; /* Increased bottom padding to push calculator down */
+            padding: 20px 20px 25px 20px; /* Further reduced padding */
             width: 100%;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .hero h1 {
-            font-size: 56px;
-            margin-bottom: 15px;
+            font-size: 26px; /* Further reduced font size */
+            margin-bottom: 8px;
             font-weight: 800;
             letter-spacing: 1.5px;
         }
         .hero p {
-            font-size: 22px;
-            margin-bottom: 40px;
-            max-width: 800px;
+            font-size: 12px; /* Further reduced font size */
+            margin-bottom: 10px; /* Further reduced margin */
+            max-width: 500px; /* Reduced max-width */
             margin-left: auto;
             margin-right: auto;
             opacity: 0.9;
         }
         .calculator-container {
             background-color: white;
-            padding: 40px;
+            padding: 25px;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            margin-top: -60px; /* Adjusted to visually center it better */
+            margin-top: -20px; /* Adjusted to maintain visual flow */
             width: 90%;
-            max-width: 550px;
+            max-width: 480px; /* Slightly reduced max-width */
             text-align: center;
             z-index: 1;
             position: relative;
@@ -131,18 +131,18 @@
             border: none;
             outline: none;
             flex-grow: 1;
-            padding: 12px;
-            font-size: 18px;
+            padding: 10px;
+            font-size: 16px;
             color: #4a148c;
             background-color: transparent;
         }
         .input-group .currency-selector {
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-left: 1px solid #dcd3ff;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px; /* Slightly reduced gap */
             font-weight: 600;
             color: #5b21b6;
             background-color: #e0e0e0;
@@ -160,14 +160,14 @@
             background-color: #8b5cf6; /* Accent purple */
             color: white;
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px auto;
+            margin: 15px auto; /* Reduced margin */
             cursor: pointer;
-            font-size: 22px;
+            font-size: 20px; /* Reduced font size */
             transition: background-color 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
@@ -177,10 +177,10 @@
         }
         .wise-message {
             background-color: #f4edff; /* Very light, soft purple */
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            margin-top: 30px;
-            font-size: 15px;
+            margin-top: 20px; /* Reduced margin */
+            font-size: 14px;
             color: #4a148c;
             text-align: left;
             border-left: 5px solid #a78bfa; /* Accent purple border */
@@ -196,13 +196,13 @@
         }
         .action-button {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             border: none;
             border-radius: 8px;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px; /* Reduced margin */
             transition: background-color 0.3s ease, transform 0.2s ease;
             letter-spacing: 0.5px;
         }
@@ -258,41 +258,41 @@
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
-                padding: 15px;
+                padding: 10px;
             }
             .nav-links, .nav-actions {
-                margin-top: 15px;
+                margin-top: 10px;
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
             }
             .nav-links a, .nav-links-right, .nav-actions button {
                 margin: 0;
             }
             .hero h1 {
-                font-size: 40px;
+                font-size: 36px; /* Further reduced for small screens */
             }
             .hero p {
-                font-size: 18px;
+                font-size: 16px; /* Further reduced for small screens */
             }
             .calculator-container {
-                padding: 25px;
-                margin-top: -40px;
+                padding: 20px;
+                margin-top: -30px;
             }
             .input-group input {
-                font-size: 16px;
-            }
-            .input-group .currency-selector {
-                padding: 8px 12px;
                 font-size: 14px;
             }
+            .input-group .currency-selector {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
             .swap-button {
-                width: 38px;
-                height: 38px;
-                font-size: 18px;
+                width: 34px;
+                height: 34px;
+                font-size: 16px;
             }
             .action-button {
-                padding: 12px;
-                font-size: 15px;
+                padding: 10px;
+                font-size: 14px;
             }
             .navbar-bottom .navbar {
                 flex-direction: column;
