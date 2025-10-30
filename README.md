@@ -11,11 +11,7 @@ Este es un frontend simple para un conversor de divisas, creado para Takenos. Pe
 
 ## Cómo usar
 
-1. Clona este repositorio:
-   ```bash
-   git clone https://github.com/luisminvielle/takenos-calculadoras.git
-   ```
-2. Abre el archivo `index.html` en tu navegador web preferido.
+Accede aquí: https://htmlpreview.github.io/?https://github.com/luisminvielle/takenos-calculadoras/blob/feature/small-hero/index.html
 
 ## Tecnologías
 
