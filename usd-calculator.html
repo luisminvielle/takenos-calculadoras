@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takenos - Conversor USD a ARS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f0ff; /* Very light purple background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        header {
+            width: 100%;
+            background-color: #5b21b6; /* Darker purple from logo */
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: white;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-links-right {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links-right:hover {
+            color: white;
+        }
+        .hero {
+            background-color: #7c3aed; /* Medium purple from logo */
+            color: white;
+            text-align: center;
+            padding: 20px 20px 25px 20px; /* Further reduced padding */
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .hero h1 {
+            font-size: 26px; /* Further reduced font size */
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+        .hero p {
+            font-size: 12px; /* Further reduced font size */
+            margin-bottom: 10px; /* Further reduced margin */
+            max-width: 500px; /* Reduced max-width */
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        .calculator-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin-top: -20px; /* Adjusted to maintain visual flow */
+            width: 90%;
+            max-width: 480px; /* Slightly reduced max-width */
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+        .exchange-rate-info {
+            background-color: #ede9fe; /* Even lighter purple */
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 15px;
+            color: #5b21b6;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .exchange-rate-info img {
+            width: 16px;
+            height: 16px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            border: 1px solid #dcd3ff; /* Lighter purple border */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 5px;
+            background-color: #fcfbff;
+        }
+        .input-group input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            color: #4a148c;
+            background-color: transparent;
+        }
+        .input-group .currency-selector {
+            padding: 8px 12px;
+            border-left: 1px solid #dcd3ff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px; /* Slightly reduced gap */
+            font-weight: 600;
+            color: #5b21b6;
+            background-color: #e0e0e0;
+            border-radius: 0 6px 6px 0;
+            transition: background-color 0.3s ease;
+        }
+        .input-group .currency-selector:hover {
+            background-color: #d8d8d8;
+        }
+        .currency-selector img {
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+        .swap-button {
+            background-color: #8b5cf6; /* Accent purple */
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto; /* Reduced margin */
+            cursor: pointer;
+            font-size: 20px; /* Reduced font size */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .swap-button:hover {
+            background-color: #9c27b0;
+            transform: rotate(180deg);
+        }
+        .wise-message {
+            background-color: #f4edff; /* Very light, soft purple */
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px; /* Reduced margin */
+            font-size: 14px;
+            color: #4a148c;
+            text-align: left;
+            border-left: 5px solid #a78bfa; /* Accent purple border */
+            line-height: 1.5;
+        }
+        .wise-message a {
+            color: #6d28d9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .wise-message a:hover {
+            text-decoration: underline;
+        }
+        .action-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px; /* Reduced margin */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+        .primary-button {
+            background-color: #7c3aed; /* Strong purple */
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .primary-button:hover {
+            background-color: #8b5cf6;
+            transform: translateY(-2px);
+        }
+        .secondary-button {
+            background-color: transparent;
+            color: #7c3aed;
+            border: 2px solid #7c3aed;
+        }
+        .secondary-button:hover {
+            background-color: #ede9fe;
+            transform: translateY(-2px);
+        }
+        footer {
+            margin-top: auto;
+            width: 100%;
+            background-color: #5b21b6;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 25px 0;
+            box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.15);
+            font-size: 14px;
+        }
+        .navbar-bottom {
+            background-color: #6d28d9; /* Slightly lighter than header */
+            padding: 12px 0;
+            font-size: 15px;
+            box-shadow: inset 0 -1px 3px rgba(0,0,0,0.1);
+        }
+        .navbar-bottom .navbar {
+            justify-content: flex-start;
+            gap: 35px;
+        }
+        .navbar-bottom span {
+            color: #e0e0e0;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        .navbar-bottom span:hover {
+            color: white;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .nav-links, .nav-actions {
+                margin-top: 10px;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .nav-links a, .nav-links-right, .nav-actions button {
+                margin: 0;
+            }
+            .hero h1 {
+                font-size: 36px; /* Further reduced for small screens */
+            }
+            .hero p {
+                font-size: 16px; /* Further reduced for small screens */
+            }
+            .calculator-container {
+                padding: 20px;
+                margin-top: -30px;
+            }
+            .input-group input {
+                font-size: 14px;
+            }
+            .input-group .currency-selector {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+            .swap-button {
+                width: 34px;
+                height: 34px;
+                font-size: 16px;
+            }
+            .action-button {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .navbar-bottom .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="#"><img src="https://framerusercontent.com/images/cQOgg57b6R7sKFMJ4O3emsf1kw.png?width=2348&height=932" alt="Takenos Logo" style="height: 50px;"></a></div>
+            <div class="nav-links">
+                <a href="#">Personal</a>
+                <a href="#">Empresa</a>
+                <a href="#">Plataforma</a>
+                <a href="#">Pedí tu Spicy Card</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="nav-links-right">Funciones</a>
+                <a href="#" class="nav-links-right">Precios</a>
+                <a href="#" class="nav-links-right">Ayuda</a>
+                <a href="#" class="nav-links-right">Inicia sesión</a>
+                <button class="primary-button" style="margin-left: 20px;">Regístrate</button>
+            </div>
+        </nav>
+        <div style="background-color: #5a009d; padding: 10px 0; font-size: 14px;">
+            <div class="navbar" style="justify-content: flex-start; gap: 30px;">
+                <span>Conversor de divisas</span>
+                <span>Todas las monedas</span>
+                <span>Alertas: Tipo cambio</span>
+                <span>Compara: Tipo cambio</span>
+            </div>
+        </div>
+    </header>
+
+    <main style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+        <section class="hero">
+            <h1>DÓLARES PESOS ARGENTINOS</h1>
+            <p>Convierte USD a ARS al tipo de cambio medio del mercado. Takenos es la cuenta internacional para enviar, gastar y convertir dinero como un local.</p>
+        </section>
+
+        <section class="calculator-container">
+            <div class="exchange-rate-info">
+                Tipo de cambio medio del mercado (?)<br>
+                $1 USD = 1460 ARS
+            </div>
+
+            <label for="cantidad" style="display: block; text-align: left; margin-bottom: 5px; font-weight: bold;">Cantidad</label>
+            <div class="input-group">
+                <input type="text" id="cantidad" value="100">
+                <div class="currency-selector">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/us.svg" alt="USD Flag" width="20"> USD <span style="font-size: 12px;">&#9660;</span>
+                </div>
+            </div>
+
+            <div class="swap-button">
+                &#x2195;
+            </div>
+
+            <label for="convertido-a" style="display: block; text-align: left; margin-bottom: 5px; font-weight: bold;">Convertido a</label>
+            <div class="input-group">
+                <input type="text" id="convertido-a" value="146.000,00" readonly>
+                <div class="currency-selector">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/ar.svg" alt="ARS Flag" width="20"> ARS <span style="font-size: 12px;">&#9660;</span>
+                </div>
+            </div>
+
+            <div class="wise-message">
+                ¿Envías USD a ARS? Podrías ahorrar hasta <strong>XX,XX USD</strong> con Takenos. <a href="#">Más información</a>
+            </div>
+
+            <button class="action-button primary-button">Envía dinero</button>
+            <button class="action-button secondary-button">Haz un seguimiento del tipo de cambio</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Takenos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const exchangeRate = 1460; // 1 USD = 1460 ARS
+
+        const cantidadInput = document.getElementById('cantidad');
+        const convertidoAInput = document.getElementById('convertido-a');
+
+        function formatNumber(num) {
+            return num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        function convertCurrency(event) {
+            if (event.target.id === 'cantidad') {
+                const usdValue = parseFloat(cantidadInput.value.replace(/,/g, '')) || 0;
+                const arsValue = usdValue * exchangeRate;
+                convertidoAInput.value = formatNumber(arsValue);
+            } else if (event.target.id === 'convertido-a') {
+                const arsValue = parseFloat(convertidoAInput.value.replace(/,/g, '')) || 0;
+                const usdValue = arsValue / exchangeRate;
+                cantidadInput.value = formatNumber(usdValue);
+            }
+        }
+
+        cantidadInput.addEventListener('input', convertCurrency);
+        convertidoAInput.addEventListener('input', convertCurrency);
+
+        // Initial conversion on page load
+        cantidadInput.dispatchEvent(new Event('input'));
+    </script>
+</body>
+</html>
